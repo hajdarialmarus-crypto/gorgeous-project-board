@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -40,7 +40,8 @@ export function Board() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [priorityFilter, setPriorityFilter] = useState<"all" | Priority>("all");
-
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
   const filtered = useMemo(() => {
@@ -134,9 +135,13 @@ export function Board() {
     }
   };
 
+  if (!mounted) {
+    return <div className="min-h-screen w-full" suppressHydrationWarning />;
+  }
+
   return (
     <div className="min-h-screen w-full">
-      {/* Header */}
+
       <header className="sticky top-0 z-30 border-b border-glass-border backdrop-blur-xl bg-[oklch(0.13_0.025_270/0.7)]">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
