@@ -260,6 +260,13 @@ export function Board() {
         task={editing}
         onSubmit={handleSubmit}
       />
+
+      <AssistantDialog
+        open={assistantOpen}
+        onOpenChange={setAssistantOpen}
+        tasks={tasks}
+        onCreateTask={createTask}
+      />
     </div>
   );
 }
