@@ -1,26 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Board } from "@/components/board/Board";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Kanban — Plan, drag, ship" },
+      {
+        name: "description",
+        content:
+          "A gorgeous, interactive Kanban board with drag-and-drop, priorities, due dates and cloud sync.",
+      },
+      { property: "og:title", content: "Kanban — Plan, drag, ship" },
+      {
+        property: "og:description",
+        content: "Beautiful dark glassmorphism Kanban with drag-and-drop and cloud sync.",
+      },
+    ],
+  }),
+  component: Board,
 });
-
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
-}
