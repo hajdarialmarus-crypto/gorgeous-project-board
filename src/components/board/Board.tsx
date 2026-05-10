@@ -9,7 +9,8 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { Search, LogIn, LogOut, Sparkles, Plus } from "lucide-react";
+import { Search, LogIn, LogOut, Sparkles, Plus, Wand2 } from "lucide-react";
+import { AssistantDialog } from "@/components/board/AssistantDialog";
 import { Link } from "@tanstack/react-router";
 import { useTasks, type Status, type Task, type Priority } from "@/lib/tasks";
 import { Column } from "@/components/board/Column";
@@ -41,6 +42,7 @@ export function Board() {
   const [search, setSearch] = useState("");
   const [priorityFilter, setPriorityFilter] = useState<"all" | Priority>("all");
   const [mounted, setMounted] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
   useEffect(() => setMounted(true), []);
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
@@ -178,6 +180,14 @@ export function Board() {
               </SelectContent>
             </Select>
             <Button
+              variant="outline"
+              onClick={() => setAssistantOpen(true)}
+              className="border-glass-border bg-white/5 gap-1.5"
+            >
+              <Wand2 className="h-4 w-4" />
+              <span className="hidden sm:inline">AI</span>
+            </Button>
+            <Button
               onClick={() => openNew("todo")}
               className="bg-gradient-to-r from-[oklch(0.72_0.20_290)] to-[oklch(0.74_0.18_200)] text-[oklch(0.10_0.02_270)] font-semibold hover:opacity-90"
             >
@@ -249,6 +259,13 @@ export function Board() {
         initialStatus={initialStatus}
         task={editing}
         onSubmit={handleSubmit}
+      />
+
+      <AssistantDialog
+        open={assistantOpen}
+        onOpenChange={setAssistantOpen}
+        tasks={tasks}
+        onCreateTask={createTask}
       />
     </div>
   );
