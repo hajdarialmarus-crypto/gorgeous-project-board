@@ -40,7 +40,8 @@ export function Board() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [priorityFilter, setPriorityFilter] = useState<"all" | Priority>("all");
-
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
   const filtered = useMemo(() => {
