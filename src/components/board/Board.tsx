@@ -42,6 +42,7 @@ export function Board() {
   const [search, setSearch] = useState("");
   const [priorityFilter, setPriorityFilter] = useState<"all" | Priority>("all");
   const [mounted, setMounted] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
   useEffect(() => setMounted(true), []);
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
