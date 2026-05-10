@@ -9,7 +9,8 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { Search, LogIn, LogOut, Sparkles, Plus } from "lucide-react";
+import { Search, LogIn, LogOut, Sparkles, Plus, Wand2 } from "lucide-react";
+import { AssistantDialog } from "@/components/board/AssistantDialog";
 import { Link } from "@tanstack/react-router";
 import { useTasks, type Status, type Task, type Priority } from "@/lib/tasks";
 import { Column } from "@/components/board/Column";
