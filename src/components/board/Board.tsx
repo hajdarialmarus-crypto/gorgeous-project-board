@@ -180,6 +180,14 @@ export function Board() {
               </SelectContent>
             </Select>
             <Button
+              variant="outline"
+              onClick={() => setAssistantOpen(true)}
+              className="border-glass-border bg-white/5 gap-1.5"
+            >
+              <Wand2 className="h-4 w-4" />
+              <span className="hidden sm:inline">AI</span>
+            </Button>
+            <Button
               onClick={() => openNew("todo")}
               className="bg-gradient-to-r from-[oklch(0.72_0.20_290)] to-[oklch(0.74_0.18_200)] text-[oklch(0.10_0.02_270)] font-semibold hover:opacity-90"
             >
